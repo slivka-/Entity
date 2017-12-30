@@ -1,11 +1,8 @@
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,7 +10,7 @@ import javax.validation.constraints.Size;
 /**
  * @author Michał Śliwa
  */
-@Entity
+@Entity(name = "coursesTable")
 @Table(name = "Tbl_Courses")
 public class TblCourses implements Serializable
 {
@@ -42,8 +39,6 @@ public class TblCourses implements Serializable
     @NotNull
     @Column(name = "courseSem")
     private int courseSem;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCourses")
-    private List<TblStudentCourse> tblStudentCourseList;
 
     public TblCourses()
     {
@@ -111,16 +106,6 @@ public class TblCourses implements Serializable
     public void setCourseSem(int courseSem)
     {
         this.courseSem = courseSem;
-    }
-
-    public List<TblStudentCourse> getTblStudentCourseList()
-    {
-        return tblStudentCourseList;
-    }
-
-    public void setTblStudentCourseList(List<TblStudentCourse> tblStudentCourseList)
-    {
-        this.tblStudentCourseList = tblStudentCourseList;
     }
 
     @Override

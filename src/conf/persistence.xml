@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
-    <persistence-unit name="myPersistence" transaction-type="JTA">
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <jta-data-source>jdbc/StudentsDB</jta-data-source>
-    </persistence-unit>
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
+  <persistence-unit name="myPersistence" transaction-type="JTA">
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <jta-data-source>jdbc/StudentsDB</jta-data-source>
+  </persistence-unit>
 </persistence>
