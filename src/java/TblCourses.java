@@ -1,17 +1,39 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
+ *
  * @author Michał Śliwa
  */
-@Entity(name = "coursesTable")
+@Entity
 @Table(name = "Tbl_Courses")
+@NamedQueries(
+{
+    @NamedQuery(name = "TblCourses.findAll", query = "SELECT t FROM TblCourses t")
+    , @NamedQuery(name = "TblCourses.findById", query = "SELECT t FROM TblCourses t WHERE t.id = :id")
+    , @NamedQuery(name = "TblCourses.findByCourseName", query = "SELECT t FROM TblCourses t WHERE t.courseName = :courseName")
+    , @NamedQuery(name = "TblCourses.findByCourseDescr", query = "SELECT t FROM TblCourses t WHERE t.courseDescr = :courseDescr")
+    , @NamedQuery(name = "TblCourses.findByCourseHours", query = "SELECT t FROM TblCourses t WHERE t.courseHours = :courseHours")
+    , @NamedQuery(name = "TblCourses.findByCourseSem", query = "SELECT t FROM TblCourses t WHERE t.courseSem = :courseSem")
+})
 public class TblCourses implements Serializable
 {
 
@@ -39,6 +61,8 @@ public class TblCourses implements Serializable
     @NotNull
     @Column(name = "courseSem")
     private int courseSem;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCourses")
+    private List<TblStudentCourse> tblStudentCourseList;
 
     public TblCourses()
     {
@@ -106,6 +130,16 @@ public class TblCourses implements Serializable
     public void setCourseSem(int courseSem)
     {
         this.courseSem = courseSem;
+    }
+
+    public List<TblStudentCourse> getTblStudentCourseList()
+    {
+        return tblStudentCourseList;
+    }
+
+    public void setTblStudentCourseList(List<TblStudentCourse> tblStudentCourseList)
+    {
+        this.tblStudentCourseList = tblStudentCourseList;
     }
 
     @Override
