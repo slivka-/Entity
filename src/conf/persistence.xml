@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
   <persistence-unit name="myPersistence" transaction-type="JTA">
-    <class>.TblStudentCourse</class>
-    <class>.TblCourses</class>
-    <class>.TblStudents</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <jta-data-source>jdbc/StudentsDB</jta-data-source>
   </persistence-unit>

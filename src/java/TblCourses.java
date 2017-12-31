@@ -1,10 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -12,28 +5,17 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * Automatically generated Entity class
  * @author Michał Śliwa
  */
 @Entity
 @Table(name = "Tbl_Courses")
-@NamedQueries(
-{
-    @NamedQuery(name = "TblCourses.findAll", query = "SELECT t FROM TblCourses t")
-    , @NamedQuery(name = "TblCourses.findById", query = "SELECT t FROM TblCourses t WHERE t.id = :id")
-    , @NamedQuery(name = "TblCourses.findByCourseName", query = "SELECT t FROM TblCourses t WHERE t.courseName = :courseName")
-    , @NamedQuery(name = "TblCourses.findByCourseDescr", query = "SELECT t FROM TblCourses t WHERE t.courseDescr = :courseDescr")
-    , @NamedQuery(name = "TblCourses.findByCourseHours", query = "SELECT t FROM TblCourses t WHERE t.courseHours = :courseHours")
-    , @NamedQuery(name = "TblCourses.findByCourseSem", query = "SELECT t FROM TblCourses t WHERE t.courseSem = :courseSem")
-})
 public class TblCourses implements Serializable
 {
 
@@ -73,7 +55,8 @@ public class TblCourses implements Serializable
         this.id = id;
     }
 
-    public TblCourses(Integer id, String courseName, String courseDescr, int courseHours, int courseSem)
+    public TblCourses(Integer id, String courseName, 
+            String courseDescr, int courseHours, int courseSem)
     {
         this.id = id;
         this.courseName = courseName;
@@ -137,7 +120,8 @@ public class TblCourses implements Serializable
         return tblStudentCourseList;
     }
 
-    public void setTblStudentCourseList(List<TblStudentCourse> tblStudentCourseList)
+    public void setTblStudentCourseList(
+            List<TblStudentCourse> tblStudentCourseList)
     {
         this.tblStudentCourseList = tblStudentCourseList;
     }
@@ -153,13 +137,13 @@ public class TblCourses implements Serializable
     @Override
     public boolean equals(Object object)
     {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TblCourses))
         {
             return false;
         }
         TblCourses other = (TblCourses) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        if ((this.id == null && other.id != null) || 
+                (this.id != null && !this.id.equals(other.id)))
         {
             return false;
         }

@@ -1,10 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,24 +5,15 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * Automatically generated Entity class
  * @author Michał Śliwa
  */
 @Entity
 @Table(name = "Tbl_StudentCourse")
-@NamedQueries(
-{
-    @NamedQuery(name = "TblStudentCourse.findAll", query = "SELECT t FROM TblStudentCourse t")
-    , @NamedQuery(name = "TblStudentCourse.findByStudentId", query = "SELECT t FROM TblStudentCourse t WHERE t.tblStudentCoursePK.studentId = :studentId")
-    , @NamedQuery(name = "TblStudentCourse.findByCourseId", query = "SELECT t FROM TblStudentCourse t WHERE t.tblStudentCoursePK.courseId = :courseId")
-    , @NamedQuery(name = "TblStudentCourse.findByMark", query = "SELECT t FROM TblStudentCourse t WHERE t.mark = :mark")
-})
 public class TblStudentCourse implements Serializable
 {
 
@@ -40,10 +24,12 @@ public class TblStudentCourse implements Serializable
     @NotNull
     @Column(name = "mark")
     private int mark;
-    @JoinColumn(name = "courseId", referencedColumnName = "Id", insertable = false, updatable = false)
+    @JoinColumn(name = "courseId", referencedColumnName = "Id", 
+            insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TblCourses tblCourses;
-    @JoinColumn(name = "studentId", referencedColumnName = "Id", insertable = false, updatable = false)
+    @JoinColumn(name = "studentId", referencedColumnName = "Id", 
+            insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TblStudents tblStudents;
 
@@ -111,20 +97,23 @@ public class TblStudentCourse implements Serializable
     public int hashCode()
     {
         int hash = 0;
-        hash += (tblStudentCoursePK != null ? tblStudentCoursePK.hashCode() : 0);
+        hash += (tblStudentCoursePK != null ? 
+                tblStudentCoursePK.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object)
     {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TblStudentCourse))
         {
             return false;
         }
         TblStudentCourse other = (TblStudentCourse) object;
-        if ((this.tblStudentCoursePK == null && other.tblStudentCoursePK != null) || (this.tblStudentCoursePK != null && !this.tblStudentCoursePK.equals(other.tblStudentCoursePK)))
+        if ((this.tblStudentCoursePK == null && 
+                other.tblStudentCoursePK != null) || 
+                (this.tblStudentCoursePK != null && 
+                !this.tblStudentCoursePK.equals(other.tblStudentCoursePK)))
         {
             return false;
         }
@@ -134,7 +123,8 @@ public class TblStudentCourse implements Serializable
     @Override
     public String toString()
     {
-        return "a.TblStudentCourse[ tblStudentCoursePK=" + tblStudentCoursePK + " ]";
+        return "a.TblStudentCourse[ tblStudentCoursePK=" + 
+                tblStudentCoursePK + " ]";
     }
     
 }
