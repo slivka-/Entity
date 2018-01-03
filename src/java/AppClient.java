@@ -145,12 +145,12 @@ public class AppClient
         List<TblStudentCourse> l;
         //define database query
         String query = "SELECT t FROM TblStudentCourse t WHERE "+
-                "t.tblStudentCoursePK = :pk";
-        //create primary key object
-        TblStudentCoursePK pk = new TblStudentCoursePK(studentId, courseId);
+                "t.tblStudentCoursePK.courseId = :courseId AND "+
+                "t.tblStudentCoursePK.studentId = :studentId";
         //execute query
         l = em.createQuery(query, TblStudentCourse.class)
-                .setParameter("pk", pk)
+                .setParameter("courseId", courseId)
+                .setParameter("studentId", studentId)
                 .getResultList();
         //check if only one row is returned
         if (l.size() == 1)
