@@ -27,12 +27,12 @@ public class TblCourses implements Serializable
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2000000000)
+    @Size(min = 1, max = 50)
     @Column(name = "courseName")
     private String courseName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2000000000)
+    @Size(min = 1, max = 250)
     @Column(name = "courseDescr")
     private String courseDescr;
     @Basic(optional = false)

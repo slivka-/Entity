@@ -27,12 +27,12 @@ public class TblStudents implements Serializable
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2000000000)
+    @Size(min = 1, max = 50)
     @Column(name = "firstName")
     private String firstName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2000000000)
+    @Size(min = 1, max = 50)
     @Column(name = "lastName")
     private String lastName;
     @Basic(optional = false)
