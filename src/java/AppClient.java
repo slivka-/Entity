@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 /**
@@ -41,7 +42,8 @@ public class AppClient
         if (filePath != null)
         {
             //read input file
-            try (BufferedReader rdr = new BufferedReader(new FileReader(filePath)))
+            try (BufferedReader rdr = 
+                    new BufferedReader(new FileReader(filePath)))
             {
                 String line;
                 while ((line = rdr.readLine()) != null)
@@ -75,37 +77,37 @@ public class AppClient
                 //get all students marks
                 getMarksOfSemesterStudents(em);               
                 //write deviation from median
-                System.out.println(calculateMedianPerc()+"%");
-                
+                System.out.println(calculateMedianPerc()+"%");                
             }
-            catch (ConstraintViolationException cvex)
+            catch (PersistenceException cvex)
             {
                 //if exception has been cought, rollback transaction
                 em.getTransaction().rollback();
-                System.out.println("======================EXCEPTION======================");
+                //print exception
                 System.out.println(cvex.toString());
-                System.out.println("======================STACK_START====================");              
+                //print stack trace
                 for (StackTraceElement s: cvex.getStackTrace())
                     System.out.println(s);
-                System.out.println("======================STACK_END======================");
-                System.out.println("======================VIOLATIONS_START=================");
-                for (ConstraintViolation<?> v : cvex.getConstraintViolations())
-                    System.out.println(v.getMessage());
-                System.out.println("======================VIOLATIONS_END=================");
+                //if exception is ConstraintViolationException
+                if(cvex.getCause().getClass() == 
+                        ConstraintViolationException.class)
+                {
+                    //print all constraint violations
+                    for (ConstraintViolation<?> v : 
+                            ((ConstraintViolationException)cvex.getCause())
+                                    .getConstraintViolations())
+                        System.out.println(v.getMessage());
+                }
             }
             catch (Exception ex)
             {
                 //if exception has been cought, rollback transaction
                 em.getTransaction().rollback();
-                //------------------------
-                System.out.println("ROLLBACK");
-                //------------------------
-                System.out.println("======================EXCEPTION======================");
+                //print exception
                 System.out.println(ex.toString());
-                System.out.println("======================STACK_START====================");
+                //print stack trace
                 for (StackTraceElement s: ex.getStackTrace())
                     System.out.println(s);
-                System.out.println("======================STACK_END======================");
             }
             finally
             {
@@ -133,7 +135,7 @@ public class AppClient
                 .setParameter("courseName", course)
                 .getResultList();
         //check if only one row is returned
-        if(l.size() == 1)
+        if (l.size() == 1)
         {
             TblCourses c = l.get(0);
             //set value of course id
@@ -151,7 +153,7 @@ public class AppClient
     public static void getStudentInfo(EntityManager em, String student)
     {
         //split parts of students name
-        String[] parts = student.split("\\ ");
+        String[] parts = student.trim().split("\\ +");
         List<TblStudents> l;
         //define database query
         String query = "SELECT t FROM TblStudents t WHERE"+
@@ -162,7 +164,7 @@ public class AppClient
                 .setParameter("lastName", parts[1])
                 .getResultList();
         //check if only one row is returned
-        if(l.size() == 1)
+        if (l.size() == 1)
         {
             TblStudents s = l.get(0);
             //set value of student id
@@ -187,7 +189,7 @@ public class AppClient
                 .setParameter("pk", pk)
                 .getResultList();
         //check if only one row is returned
-        if(l.size() == 1)
+        if (l.size() == 1)
         {
             TblStudentCourse sc = l.get(0);
             //set value of student mark
@@ -233,7 +235,8 @@ public class AppClient
         //check if number of marks is even
         if (allMarks.size() % 2 == 0)
             //calculate median for even number of marks
-            median = (((double)allMarks.get(allMarks.size()/2)) + ((double)allMarks.get((allMarks.size()/2)-1)))/2;
+            median = (((double)allMarks.get(allMarks.size()/2)) + 
+                    ((double)allMarks.get((allMarks.size()/2)-1)))/2;
         else
             //calculate median for uneven number of marks
             median = (double)allMarks.get(allMarks.size()/2);

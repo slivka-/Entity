@@ -25,20 +25,20 @@ public class TblStudents implements Serializable
     @NotNull
     @Column(name = "Id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    
+    @Size(max = 50)
     @Column(name = "firstName")
     private String firstName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    
+    @Size(max = 50)
     @Column(name = "lastName")
     private String lastName;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "semester")
     private int semester;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblStudents")
     private List<TblStudentCourse> tblStudentCourseList;
 

@@ -20,25 +20,26 @@ public class TblCourses implements Serializable
 {
 
     private static final long serialVersionUID = 1984457982785234598L;
+    
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "Id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "courseName")
     private String courseName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+    
+    @Size(max = 250)
     @Column(name = "courseDescr")
     private String courseDescr;
-    @Basic(optional = false)
-    @NotNull
+    
     @Column(name = "courseHours")
     private int courseHours;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "courseSem")
