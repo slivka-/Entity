@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 /**
  * Calculates given students' mark deviation from median
  * @author Michał Śliwa
@@ -57,10 +56,9 @@ public class AppClient
         if (fileContent.size() > 0)
         {
             //get entity manager factory
-            EntityManagerFactory emf = javax.persistence.Persistence
-                .createEntityManagerFactory("myPersistence");
-            //create new entity manager
-            EntityManager em = emf.createEntityManager();
+            EntityManager em = javax.persistence.Persistence
+                .createEntityManagerFactory("myPersistence")
+                .createEntityManager();
             //begin transaction
             try
             {
@@ -91,21 +89,17 @@ public class AppClient
     {
         //initialize list
         List<TblCourses> l;
-        //define database query
-        String query = "SELECT t FROM TblCourses t WHERE"+
-            " t.courseName = :courseName";
         //execute query
-        l = em.createQuery(query, TblCourses.class)
+        l = em.createNamedQuery("TblCourses.getCourse",TblCourses.class)
                 .setParameter("courseName", course)
                 .getResultList();
         //check if only one row is returned
         if (l.size() == 1)
         {
-            TblCourses c = l.get(0);
             //set value of course id
-            courseId = c.getId();
+            courseId = l.get(0).getId();
             //set value of semester
-            courseSemester = c.getCourseSem();
+            courseSemester = l.get(0).getCourseSem();
         }
     }
     
@@ -119,20 +113,16 @@ public class AppClient
         //split parts of students name
         String[] parts = student.trim().split("\\ +");
         List<TblStudents> l;
-        //define database query
-        String query = "SELECT t FROM TblStudents t WHERE"+
-        " t.firstName = :firstName AND t.lastName = :lastName";
         //execute query
-        l = em.createQuery(query, TblStudents.class)
+        l = em.createNamedQuery("TblStudents.getStudent",TblStudents.class)
                 .setParameter("firstName", parts[0])
                 .setParameter("lastName", parts[1])
                 .getResultList();
         //check if only one row is returned
         if (l.size() == 1)
         {
-            TblStudents s = l.get(0);
             //set value of student id
-            studentId = s.getId();
+            studentId = l.get(0).getId();
         }
     }
     
@@ -143,12 +133,9 @@ public class AppClient
     public static void getStudnetMark(EntityManager em)
     {
         List<TblStudentCourse> l;
-        //define database query
-        String query = "SELECT t FROM TblStudentCourse t WHERE "+
-                "t.tblStudentCoursePK.courseId = :courseId AND "+
-                "t.tblStudentCoursePK.studentId = :studentId";
         //execute query
-        l = em.createQuery(query, TblStudentCourse.class)
+        l = em.createNamedQuery("TblStudentCourse.getSingleMark", 
+                                                    TblStudentCourse.class)
                 .setParameter("courseId", courseId)
                 .setParameter("studentId", studentId)
                 .getResultList();
@@ -168,13 +155,9 @@ public class AppClient
     public static void getMarksOfSemesterStudents(EntityManager em)
     {
         List<TblStudentCourse> l;
-        //define database query
-        String query = "SELECT sc FROM TblStudentCourse sc JOIN"+
-                " sc.tblStudents s WHERE sc.mark >= 50 AND"+
-                " sc.tblStudentCoursePK.courseId = :courseId"+
-                " AND s.semester = :semester";
         //execute query
-        l = em.createQuery(query, TblStudentCourse.class)
+        l = em.createNamedQuery("TblStudentCourse.getAllMarks", 
+                                                TblStudentCourse.class)
                 .setParameter("courseId", courseId)
                 .setParameter("semester", courseSemester)
                 .getResultList();

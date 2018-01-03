@@ -4,6 +4,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -11,6 +13,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tbl_studentcourse")
+@NamedQueries({
+    @NamedQuery(name = "TblStudentCourse.getSingleMark",
+            query = "SELECT t FROM TblStudentCourse t WHERE "+
+                "t.tblStudentCoursePK.courseId = :courseId AND "+
+                "t.tblStudentCoursePK.studentId = :studentId")
+    ,@NamedQuery(name = "TblStudentCourse.getAllMarks",
+            query = "SELECT sc FROM TblStudentCourse sc JOIN"+
+                    " sc.tblStudents s WHERE sc.mark >= 50 AND"+
+                    " sc.tblStudentCoursePK.courseId = :courseId"+
+                    " AND s.semester = :semester")
+})
 public class TblStudentCourse implements Serializable 
 {
 

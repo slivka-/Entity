@@ -5,6 +5,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -15,6 +17,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tbl_courses")
+@NamedQueries({
+    @NamedQuery(name = "TblCourses.getCourse",
+            query = "SELECT t FROM TblCourses t WHERE"+
+            " t.courseName = :courseName")
+})
 public class TblCourses implements Serializable 
 {
 
