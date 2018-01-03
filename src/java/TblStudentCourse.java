@@ -17,7 +17,11 @@ import javax.validation.constraints.NotNull;
 public class TblStudentCourse implements Serializable
 {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1982457984715234598L;
+    
+    /**
+     * 
+     */
     @EmbeddedId
     protected TblStudentCoursePK tblStudentCoursePK;
     @Basic(optional = false)
@@ -33,66 +37,119 @@ public class TblStudentCourse implements Serializable
     @ManyToOne(optional = false)
     private TblStudents tblStudents;
 
+    /**
+     * 
+     */
     public TblStudentCourse()
     {
     }
 
+    /**
+     * 
+     * @param tblStudentCoursePK 
+     */
     public TblStudentCourse(TblStudentCoursePK tblStudentCoursePK)
     {
         this.tblStudentCoursePK = tblStudentCoursePK;
     }
 
+    /**
+     * 
+     * @param tblStudentCoursePK
+     * @param mark 
+     */
     public TblStudentCourse(TblStudentCoursePK tblStudentCoursePK, int mark)
     {
         this.tblStudentCoursePK = tblStudentCoursePK;
         this.mark = mark;
     }
 
+    /**
+     * 
+     * @param studentId
+     * @param courseId 
+     */
     public TblStudentCourse(int studentId, int courseId)
     {
         this.tblStudentCoursePK = new TblStudentCoursePK(studentId, courseId);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public TblStudentCoursePK getTblStudentCoursePK()
     {
         return tblStudentCoursePK;
     }
 
+    /**
+     * 
+     * @param tblStudentCoursePK 
+     */
     public void setTblStudentCoursePK(TblStudentCoursePK tblStudentCoursePK)
     {
         this.tblStudentCoursePK = tblStudentCoursePK;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getMark()
     {
         return mark;
     }
 
+    /**
+     * 
+     * @param mark 
+     */
     public void setMark(int mark)
     {
         this.mark = mark;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public TblCourses getTblCourses()
     {
         return tblCourses;
     }
 
+    /**
+     * 
+     * @param tblCourses 
+     */
     public void setTblCourses(TblCourses tblCourses)
     {
         this.tblCourses = tblCourses;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public TblStudents getTblStudents()
     {
         return tblStudents;
     }
 
+    /**
+     * 
+     * @param tblStudents 
+     */
     public void setTblStudents(TblStudents tblStudents)
     {
         this.tblStudents = tblStudents;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int hashCode()
     {
@@ -102,6 +159,11 @@ public class TblStudentCourse implements Serializable
         return hash;
     }
 
+    /**
+     * 
+     * @param object
+     * @return 
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -120,6 +182,10 @@ public class TblStudentCourse implements Serializable
         return true;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString()
     {

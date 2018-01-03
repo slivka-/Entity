@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class TblStudentCoursePK implements Serializable
 {
-
+    private static final long serialVersionUID = 1982657982715234598L;
     @Basic(optional = false)
     @NotNull
     @Column(name = "studentId")
@@ -21,45 +21,78 @@ public class TblStudentCoursePK implements Serializable
     @Column(name = "courseId")
     private int courseId;
 
+    /**
+     * 
+     */
     public TblStudentCoursePK()
     {
     }
 
+    /**
+     * 
+     * @param studentId
+     * @param courseId 
+     */
     public TblStudentCoursePK(int studentId, int courseId)
     {
         this.studentId = studentId;
         this.courseId = courseId;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getStudentId()
     {
         return studentId;
     }
 
+    /**
+     * 
+     * @param studentId 
+     */
     public void setStudentId(int studentId)
     {
         this.studentId = studentId;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getCourseId()
     {
         return courseId;
     }
 
+    /**
+     * 
+     * @param courseId 
+     */
     public void setCourseId(int courseId)
     {
         this.courseId = courseId;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int hashCode()
     {
         int hash = 0;
-        hash += (int) studentId;
-        hash += (int) courseId;
+        hash += studentId;
+        hash += courseId;
         return hash;
     }
 
+    /**
+     * 
+     * @param object
+     * @return 
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -79,6 +112,10 @@ public class TblStudentCoursePK implements Serializable
         return true;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString()
     {

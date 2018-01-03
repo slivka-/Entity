@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 /**
  * Calculates given students' mark deviation from median
  * @author Michał Śliwa
@@ -71,21 +73,46 @@ public class AppClient
                 //get student mark
                 getStudnetMark(em);
                 //get all students marks
-                getMarksOfSemesterStudents(em);
+                getMarksOfSemesterStudents(em);               
                 //write deviation from median
                 System.out.println(calculateMedianPerc()+"%");
+                
+            }
+            catch (ConstraintViolationException cvex)
+            {
+                //if exception has been cought, rollback transaction
+                em.getTransaction().rollback();
+                System.out.println("======================EXCEPTION======================");
+                System.out.println(cvex.toString());
+                System.out.println("======================STACK_START====================");              
+                for (StackTraceElement s: cvex.getStackTrace())
+                    System.out.println(s);
+                System.out.println("======================STACK_END======================");
+                System.out.println("======================VIOLATIONS_START=================");
+                for (ConstraintViolation<?> v : cvex.getConstraintViolations())
+                    System.out.println(v.getMessage());
+                System.out.println("======================VIOLATIONS_END=================");
             }
             catch (Exception ex)
             {
                 //if exception has been cought, rollback transaction
-                System.out.println(ex.toString());
                 em.getTransaction().rollback();
+                //------------------------
+                System.out.println("ROLLBACK");
+                //------------------------
+                System.out.println("======================EXCEPTION======================");
+                System.out.println(ex.toString());
+                System.out.println("======================STACK_START====================");
+                for (StackTraceElement s: ex.getStackTrace())
+                    System.out.println(s);
+                System.out.println("======================STACK_END======================");
             }
             finally
             {
                 //close entity manager
                 em.close();
             }
+            
         }
     }
     

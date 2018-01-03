@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 public class TblStudents implements Serializable
 {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1982457982785234598L;
     @Id
     @Basic(optional = false)
     @NotNull
@@ -42,15 +42,29 @@ public class TblStudents implements Serializable
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblStudents")
     private List<TblStudentCourse> tblStudentCourseList;
 
+    /**
+     * 
+     */
     public TblStudents()
     {
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public TblStudents(Integer id)
     {
         this.id = id;
     }
 
+    /**
+     * 
+     * @param id
+     * @param firstName
+     * @param lastName
+     * @param semester 
+     */
     public TblStudents(Integer id, String firstName, 
             String lastName, int semester)
     {
@@ -60,57 +74,101 @@ public class TblStudents implements Serializable
         this.semester = semester;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Integer getId()
     {
         return id;
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void setId(Integer id)
     {
         this.id = id;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getFirstName()
     {
         return firstName;
     }
 
+    /**
+     * 
+     * @param firstName 
+     */
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getLastName()
     {
         return lastName;
     }
 
+    /**
+     * 
+     * @param lastName 
+     */
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getSemester()
     {
         return semester;
     }
 
+    /**
+     * 
+     * @param semester 
+     */
     public void setSemester(int semester)
     {
         this.semester = semester;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<TblStudentCourse> getTblStudentCourseList()
     {
         return tblStudentCourseList;
     }
 
+    /**
+     * 
+     * @param tblStudentCourseList 
+     */
     public void setTblStudentCourseList(
             List<TblStudentCourse> tblStudentCourseList)
     {
         this.tblStudentCourseList = tblStudentCourseList;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int hashCode()
     {
@@ -119,6 +177,11 @@ public class TblStudents implements Serializable
         return hash;
     }
 
+    /**
+     * 
+     * @param object
+     * @return 
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -135,6 +198,10 @@ public class TblStudents implements Serializable
         return true;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString()
     {
