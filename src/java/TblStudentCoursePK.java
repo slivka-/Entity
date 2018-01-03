@@ -5,13 +5,13 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
 /**
- * Automatically generated Entity class
  * @author Michał Śliwa
  */
 @Embeddable
-public class TblStudentCoursePK implements Serializable
+public class TblStudentCoursePK implements Serializable 
 {
-    private static final long serialVersionUID = 1982657982715234598L;
+
+    private static final long serialVersionUID = 1982453983745238598L;
     @Basic(optional = false)
     @NotNull
     @Column(name = "studentId")
@@ -24,8 +24,9 @@ public class TblStudentCoursePK implements Serializable
     /**
      * 
      */
-    public TblStudentCoursePK()
+    public TblStudentCoursePK() 
     {
+        
     }
 
     /**
@@ -33,7 +34,7 @@ public class TblStudentCoursePK implements Serializable
      * @param studentId
      * @param courseId 
      */
-    public TblStudentCoursePK(int studentId, int courseId)
+    public TblStudentCoursePK(int studentId, int courseId) 
     {
         this.studentId = studentId;
         this.courseId = courseId;
@@ -43,7 +44,7 @@ public class TblStudentCoursePK implements Serializable
      * 
      * @return 
      */
-    public int getStudentId()
+    public int getStudentId() 
     {
         return studentId;
     }
@@ -52,7 +53,7 @@ public class TblStudentCoursePK implements Serializable
      * 
      * @param studentId 
      */
-    public void setStudentId(int studentId)
+    public void setStudentId(int studentId) 
     {
         this.studentId = studentId;
     }
@@ -61,7 +62,7 @@ public class TblStudentCoursePK implements Serializable
      * 
      * @return 
      */
-    public int getCourseId()
+    public int getCourseId() 
     {
         return courseId;
     }
@@ -70,7 +71,7 @@ public class TblStudentCoursePK implements Serializable
      * 
      * @param courseId 
      */
-    public void setCourseId(int courseId)
+    public void setCourseId(int courseId) 
     {
         this.courseId = courseId;
     }
@@ -80,7 +81,7 @@ public class TblStudentCoursePK implements Serializable
      * @return 
      */
     @Override
-    public int hashCode()
+    public int hashCode() 
     {
         int hash = 0;
         hash += studentId;
@@ -94,18 +95,18 @@ public class TblStudentCoursePK implements Serializable
      * @return 
      */
     @Override
-    public boolean equals(Object object)
+    public boolean equals(Object object) 
     {
-        if (!(object instanceof TblStudentCoursePK))
+        if (!(object instanceof TblStudentCoursePK)) 
         {
             return false;
         }
         TblStudentCoursePK other = (TblStudentCoursePK) object;
-        if (this.studentId != other.studentId)
+        if (this.studentId != other.studentId) 
         {
             return false;
         }
-        if (this.courseId != other.courseId)
+        if (this.courseId != other.courseId) 
         {
             return false;
         }
@@ -117,10 +118,10 @@ public class TblStudentCoursePK implements Serializable
      * @return 
      */
     @Override
-    public String toString()
+    public String toString() 
     {
-        return "a.TblStudentCoursePK[ studentId=" + 
-                studentId + ", courseId=" + courseId + " ]";
+        return "a.TblStudentCoursePK[ studentId=" 
+                + studentId + ", courseId=" + courseId + " ]";
     }
     
 }

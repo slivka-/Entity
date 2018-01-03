@@ -6,9 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 /**
  * Calculates given students' mark deviation from median
  * @author Michał Śliwa
@@ -24,10 +21,10 @@ public class AppClient
     private static int courseSemester;
     
     //students mark from course
-    private static int studentMark;
+    private static double studentMark;
     
     //all course marks from students of the same semester
-    private static ArrayList<Integer> allMarks;
+    private static ArrayList<Double> allMarks;
     
     /**
      * Main class
@@ -65,7 +62,6 @@ public class AppClient
             //create new entity manager
             EntityManager em = emf.createEntityManager();
             //begin transaction
-            em.getTransaction().begin();
             try
             {
                 //get course info
@@ -79,42 +75,10 @@ public class AppClient
                 //write deviation from median
                 System.out.println(calculateMedianPerc()+"%");                
             }
-            catch (PersistenceException cvex)
-            {
-                //if exception has been cought, rollback transaction
-                em.getTransaction().rollback();
-                //print exception
-                System.out.println(cvex.toString());
-                //print stack trace
-                for (StackTraceElement s: cvex.getStackTrace())
-                    System.out.println(s);
-                //if exception is ConstraintViolationException
-                if(cvex.getCause().getClass() == 
-                        ConstraintViolationException.class)
-                {
-                    //print all constraint violations
-                    for (ConstraintViolation<?> v : 
-                            ((ConstraintViolationException)cvex.getCause())
-                                    .getConstraintViolations())
-                        System.out.println(v.getMessage());
-                }
-            }
             catch (Exception ex)
             {
-                //if exception has been cought, rollback transaction
-                em.getTransaction().rollback();
-                //print exception
-                System.out.println(ex.toString());
-                //print stack trace
-                for (StackTraceElement s: ex.getStackTrace())
-                    System.out.println(s);
-            }
-            finally
-            {
-                //close entity manager
-                em.close();
-            }
-            
+                System.out.println("0%");
+            }            
         }
     }
     
@@ -242,7 +206,7 @@ public class AppClient
             median = (double)allMarks.get(allMarks.size()/2);
         
         //calculate marks deviation from median
-        double percent =  (((double)studentMark/median)-1)*100; 
+        double percent =  ((studentMark/median)-1)*100; 
                 
         //return deviation
         return String.format("%.0f", percent);

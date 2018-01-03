@@ -11,82 +11,75 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Automatically generated Entity class
  * @author Michał Śliwa
  */
 @Entity
-@Table(name = "Tbl_Courses")
-public class TblCourses implements Serializable
+@Table(name = "tbl_courses")
+public class TblCourses implements Serializable 
 {
 
-    private static final long serialVersionUID = 1984457982785234598L;
-    
+    private static final long serialVersionUID = 1982457983785234598L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "Id")
     private Integer id;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Size(max = 50)
+    @Size(max = 255)
     @Column(name = "courseName")
     private String courseName;
-    
-    @Size(max = 250)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "courseDescr")
     private String courseDescr;
-    
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "courseHours")
     private int courseHours;
-    
     @Basic(optional = false)
     @NotNull
     @Column(name = "courseSem")
     private int courseSem;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCourses")
     private List<TblStudentCourse> tblStudentCourseList;
-
+        
     /**
      * 
      */
-    public TblCourses()
+    public TblCourses() 
     {
     }
-
+    
     /**
      * 
      * @param id 
      */
-    public TblCourses(Integer id)
+    public TblCourses(Integer id) 
     {
         this.id = id;
     }
-
+    
     /**
      * 
      * @param id
-     * @param courseName
      * @param courseDescr
      * @param courseHours
      * @param courseSem 
      */
-    public TblCourses(Integer id, String courseName, 
-            String courseDescr, int courseHours, int courseSem)
+    public TblCourses(Integer id, String courseDescr, 
+            int courseHours, int courseSem) 
     {
         this.id = id;
-        this.courseName = courseName;
         this.courseDescr = courseDescr;
         this.courseHours = courseHours;
         this.courseSem = courseSem;
     }
-
+    
     /**
      * 
      * @return 
      */
-    public Integer getId()
-    {
+    public Integer getId() {
         return id;
     }
 
@@ -94,7 +87,7 @@ public class TblCourses implements Serializable
      * 
      * @param id 
      */
-    public void setId(Integer id)
+    public void setId(Integer id) 
     {
         this.id = id;
     }
@@ -103,7 +96,7 @@ public class TblCourses implements Serializable
      * 
      * @return 
      */
-    public String getCourseName()
+    public String getCourseName() 
     {
         return courseName;
     }
@@ -112,7 +105,7 @@ public class TblCourses implements Serializable
      * 
      * @param courseName 
      */
-    public void setCourseName(String courseName)
+    public void setCourseName(String courseName) 
     {
         this.courseName = courseName;
     }
@@ -121,7 +114,7 @@ public class TblCourses implements Serializable
      * 
      * @return 
      */
-    public String getCourseDescr()
+    public String getCourseDescr() 
     {
         return courseDescr;
     }
@@ -130,16 +123,16 @@ public class TblCourses implements Serializable
      * 
      * @param courseDescr 
      */
-    public void setCourseDescr(String courseDescr)
+    public void setCourseDescr(String courseDescr) 
     {
         this.courseDescr = courseDescr;
     }
-
+    
     /**
      * 
      * @return 
      */
-    public int getCourseHours()
+    public int getCourseHours() 
     {
         return courseHours;
     }
@@ -148,7 +141,7 @@ public class TblCourses implements Serializable
      * 
      * @param courseHours 
      */
-    public void setCourseHours(int courseHours)
+    public void setCourseHours(int courseHours) 
     {
         this.courseHours = courseHours;
     }
@@ -157,7 +150,7 @@ public class TblCourses implements Serializable
      * 
      * @return 
      */
-    public int getCourseSem()
+    public int getCourseSem() 
     {
         return courseSem;
     }
@@ -166,7 +159,7 @@ public class TblCourses implements Serializable
      * 
      * @param courseSem 
      */
-    public void setCourseSem(int courseSem)
+    public void setCourseSem(int courseSem) 
     {
         this.courseSem = courseSem;
     }
@@ -175,7 +168,7 @@ public class TblCourses implements Serializable
      * 
      * @return 
      */
-    public List<TblStudentCourse> getTblStudentCourseList()
+    public List<TblStudentCourse> getTblStudentCourseList() 
     {
         return tblStudentCourseList;
     }
@@ -184,8 +177,8 @@ public class TblCourses implements Serializable
      * 
      * @param tblStudentCourseList 
      */
-    public void setTblStudentCourseList(
-            List<TblStudentCourse> tblStudentCourseList)
+    public void setTblStudentCourseList
+        (List<TblStudentCourse> tblStudentCourseList) 
     {
         this.tblStudentCourseList = tblStudentCourseList;
     }
@@ -195,42 +188,41 @@ public class TblCourses implements Serializable
      * @return 
      */
     @Override
-    public int hashCode()
+    public int hashCode() 
     {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+ 
     /**
      * 
      * @param object
      * @return 
      */
     @Override
-    public boolean equals(Object object)
+    public boolean equals(Object object) 
     {
-        if (!(object instanceof TblCourses))
+        if (!(object instanceof TblCourses)) 
         {
             return false;
         }
         TblCourses other = (TblCourses) object;
-        if ((this.id == null && other.id != null) || 
-                (this.id != null && !this.id.equals(other.id)))
+        if ((this.id == null && other.id != null) 
+                || (this.id != null && !this.id.equals(other.id))) 
         {
             return false;
         }
         return true;
-    }
+    }    
 
     /**
      * 
      * @return 
      */
     @Override
-    public String toString()
+    public String toString() 
     {
         return "a.TblCourses[ id=" + id + " ]";
     }
-    
 }

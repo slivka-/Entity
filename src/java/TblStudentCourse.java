@@ -1,67 +1,48 @@
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
- * Automatically generated Entity class
  * @author Michał Śliwa
  */
 @Entity
-@Table(name = "Tbl_StudentCourse")
-public class TblStudentCourse implements Serializable
+@Table(name = "tbl_studentcourse")
+public class TblStudentCourse implements Serializable 
 {
 
-    private static final long serialVersionUID = 1982457984715234598L;
-    
-    /**
-     * 
-     */
+    private static final long serialVersionUID = 1982453983745234598L;
     @EmbeddedId
     protected TblStudentCoursePK tblStudentCoursePK;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "mark")
-    private int mark;
+    private Double mark;
     @JoinColumn(name = "courseId", referencedColumnName = "Id", 
-            insertable = false, updatable = false)
+        insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TblCourses tblCourses;
     @JoinColumn(name = "studentId", referencedColumnName = "Id", 
-            insertable = false, updatable = false)
+        insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TblStudents tblStudents;
 
     /**
      * 
      */
-    public TblStudentCourse()
+    public TblStudentCourse() 
     {
+        
     }
 
     /**
      * 
      * @param tblStudentCoursePK 
      */
-    public TblStudentCourse(TblStudentCoursePK tblStudentCoursePK)
+    public TblStudentCourse(TblStudentCoursePK tblStudentCoursePK) 
     {
         this.tblStudentCoursePK = tblStudentCoursePK;
-    }
-
-    /**
-     * 
-     * @param tblStudentCoursePK
-     * @param mark 
-     */
-    public TblStudentCourse(TblStudentCoursePK tblStudentCoursePK, int mark)
-    {
-        this.tblStudentCoursePK = tblStudentCoursePK;
-        this.mark = mark;
     }
 
     /**
@@ -69,7 +50,7 @@ public class TblStudentCourse implements Serializable
      * @param studentId
      * @param courseId 
      */
-    public TblStudentCourse(int studentId, int courseId)
+    public TblStudentCourse(int studentId, int courseId) 
     {
         this.tblStudentCoursePK = new TblStudentCoursePK(studentId, courseId);
     }
@@ -78,7 +59,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @return 
      */
-    public TblStudentCoursePK getTblStudentCoursePK()
+    public TblStudentCoursePK getTblStudentCoursePK() 
     {
         return tblStudentCoursePK;
     }
@@ -87,7 +68,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @param tblStudentCoursePK 
      */
-    public void setTblStudentCoursePK(TblStudentCoursePK tblStudentCoursePK)
+    public void setTblStudentCoursePK(TblStudentCoursePK tblStudentCoursePK) 
     {
         this.tblStudentCoursePK = tblStudentCoursePK;
     }
@@ -96,7 +77,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @return 
      */
-    public int getMark()
+    public Double getMark() 
     {
         return mark;
     }
@@ -105,7 +86,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @param mark 
      */
-    public void setMark(int mark)
+    public void setMark(Double mark) 
     {
         this.mark = mark;
     }
@@ -114,7 +95,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @return 
      */
-    public TblCourses getTblCourses()
+    public TblCourses getTblCourses() 
     {
         return tblCourses;
     }
@@ -123,7 +104,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @param tblCourses 
      */
-    public void setTblCourses(TblCourses tblCourses)
+    public void setTblCourses(TblCourses tblCourses) 
     {
         this.tblCourses = tblCourses;
     }
@@ -132,7 +113,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @return 
      */
-    public TblStudents getTblStudents()
+    public TblStudents getTblStudents() 
     {
         return tblStudents;
     }
@@ -141,7 +122,7 @@ public class TblStudentCourse implements Serializable
      * 
      * @param tblStudents 
      */
-    public void setTblStudents(TblStudents tblStudents)
+    public void setTblStudents(TblStudents tblStudents) 
     {
         this.tblStudents = tblStudents;
     }
@@ -151,7 +132,7 @@ public class TblStudentCourse implements Serializable
      * @return 
      */
     @Override
-    public int hashCode()
+    public int hashCode() 
     {
         int hash = 0;
         hash += (tblStudentCoursePK != null ? 
@@ -165,9 +146,9 @@ public class TblStudentCourse implements Serializable
      * @return 
      */
     @Override
-    public boolean equals(Object object)
+    public boolean equals(Object object) 
     {
-        if (!(object instanceof TblStudentCourse))
+        if (!(object instanceof TblStudentCourse)) 
         {
             return false;
         }
@@ -175,7 +156,7 @@ public class TblStudentCourse implements Serializable
         if ((this.tblStudentCoursePK == null && 
                 other.tblStudentCoursePK != null) || 
                 (this.tblStudentCoursePK != null && 
-                !this.tblStudentCoursePK.equals(other.tblStudentCoursePK)))
+                !this.tblStudentCoursePK.equals(other.tblStudentCoursePK))) 
         {
             return false;
         }
@@ -187,10 +168,10 @@ public class TblStudentCourse implements Serializable
      * @return 
      */
     @Override
-    public String toString()
+    public String toString() 
     {
-        return "a.TblStudentCourse[ tblStudentCoursePK=" + 
-                tblStudentCoursePK + " ]";
+        return "a.TblStudentCourse[ tblStudentCoursePK=" 
+                + tblStudentCoursePK + " ]";
     }
     
 }

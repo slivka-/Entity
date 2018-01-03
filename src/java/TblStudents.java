@@ -11,49 +11,45 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Automatically generated Entity class
  * @author Michał Śliwa
  */
 @Entity
-@Table(name = "Tbl_Students")
-public class TblStudents implements Serializable
+@Table(name = "tbl_students")
+public class TblStudents implements Serializable 
 {
 
-    private static final long serialVersionUID = 1982457982785234598L;
+    private static final long serialVersionUID = 1982457983745234598L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "Id")
     private Integer id;
-    
-    @Size(max = 50)
+    @Size(max = 255)
     @Column(name = "firstName")
     private String firstName;
-    
-    @Size(max = 50)
+    @Size(max = 255)
     @Column(name = "lastName")
     private String lastName;
-    
     @Basic(optional = false)
     @NotNull
     @Column(name = "semester")
     private int semester;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblStudents")
     private List<TblStudentCourse> tblStudentCourseList;
 
     /**
      * 
      */
-    public TblStudents()
+    public TblStudents() 
     {
+        
     }
 
     /**
      * 
      * @param id 
      */
-    public TblStudents(Integer id)
+    public TblStudents(Integer id) 
     {
         this.id = id;
     }
@@ -61,16 +57,11 @@ public class TblStudents implements Serializable
     /**
      * 
      * @param id
-     * @param firstName
-     * @param lastName
      * @param semester 
      */
-    public TblStudents(Integer id, String firstName, 
-            String lastName, int semester)
+    public TblStudents(Integer id, int semester) 
     {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.semester = semester;
     }
 
@@ -78,7 +69,7 @@ public class TblStudents implements Serializable
      * 
      * @return 
      */
-    public Integer getId()
+    public Integer getId() 
     {
         return id;
     }
@@ -87,7 +78,7 @@ public class TblStudents implements Serializable
      * 
      * @param id 
      */
-    public void setId(Integer id)
+    public void setId(Integer id) 
     {
         this.id = id;
     }
@@ -96,7 +87,7 @@ public class TblStudents implements Serializable
      * 
      * @return 
      */
-    public String getFirstName()
+    public String getFirstName() 
     {
         return firstName;
     }
@@ -105,7 +96,7 @@ public class TblStudents implements Serializable
      * 
      * @param firstName 
      */
-    public void setFirstName(String firstName)
+    public void setFirstName(String firstName) 
     {
         this.firstName = firstName;
     }
@@ -114,7 +105,7 @@ public class TblStudents implements Serializable
      * 
      * @return 
      */
-    public String getLastName()
+    public String getLastName() 
     {
         return lastName;
     }
@@ -123,7 +114,7 @@ public class TblStudents implements Serializable
      * 
      * @param lastName 
      */
-    public void setLastName(String lastName)
+    public void setLastName(String lastName) 
     {
         this.lastName = lastName;
     }
@@ -132,7 +123,7 @@ public class TblStudents implements Serializable
      * 
      * @return 
      */
-    public int getSemester()
+    public int getSemester() 
     {
         return semester;
     }
@@ -141,7 +132,7 @@ public class TblStudents implements Serializable
      * 
      * @param semester 
      */
-    public void setSemester(int semester)
+    public void setSemester(int semester) 
     {
         this.semester = semester;
     }
@@ -150,7 +141,7 @@ public class TblStudents implements Serializable
      * 
      * @return 
      */
-    public List<TblStudentCourse> getTblStudentCourseList()
+    public List<TblStudentCourse> getTblStudentCourseList() 
     {
         return tblStudentCourseList;
     }
@@ -159,8 +150,8 @@ public class TblStudents implements Serializable
      * 
      * @param tblStudentCourseList 
      */
-    public void setTblStudentCourseList(
-            List<TblStudentCourse> tblStudentCourseList)
+    public void setTblStudentCourseList
+        (List<TblStudentCourse> tblStudentCourseList) 
     {
         this.tblStudentCourseList = tblStudentCourseList;
     }
@@ -170,7 +161,7 @@ public class TblStudents implements Serializable
      * @return 
      */
     @Override
-    public int hashCode()
+    public int hashCode() 
     {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -183,15 +174,15 @@ public class TblStudents implements Serializable
      * @return 
      */
     @Override
-    public boolean equals(Object object)
+    public boolean equals(Object object) 
     {
-        if (!(object instanceof TblStudents))
+        if (!(object instanceof TblStudents)) 
         {
             return false;
         }
         TblStudents other = (TblStudents) object;
-        if ((this.id == null && other.id != null) || 
-                (this.id != null && !this.id.equals(other.id)))
+        if ((this.id == null && other.id != null) 
+                || (this.id != null && !this.id.equals(other.id))) 
         {
             return false;
         }
@@ -203,9 +194,8 @@ public class TblStudents implements Serializable
      * @return 
      */
     @Override
-    public String toString()
+    public String toString() 
     {
         return "a.TblStudents[ id=" + id + " ]";
     }
-    
 }
